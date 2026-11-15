@@ -42,6 +42,16 @@
     html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
   </style>
   <style>@media(max-width:760px){.footer>strong,.footer>span{font-size:8px}.footer-social a{font-size:8px}.footer{gap:9px}.footer-social{gap:8px 13px}}</style>
+  <style>
+    .splash-visual{height:100svh;max-height:none;min-height:0;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(6px,1vw,15px);opacity:.88;mask-image:linear-gradient(0deg,transparent,#000 5%,#000 95%,transparent)}
+    .photo-column{gap:clamp(6px,1vw,15px)}
+    .photo-card{height:clamp(250px,48svh,500px)}
+    .photo-card img{filter:saturate(.92) brightness(.9)}
+    .splash-visual:after{background:linear-gradient(90deg,rgba(11,9,12,.48),rgba(11,9,12,.12) 52%,rgba(11,9,12,.32)),linear-gradient(0deg,rgba(11,9,12,.48),transparent 48%,rgba(11,9,12,.2))}
+    @media(max-width:760px){.splash-visual{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;opacity:.78}.photo-column{gap:6px}.photo-column-wide{display:none}.photo-card{height:clamp(190px,34svh,310px)}.splash-copy{left:20px;top:46%;width:calc(100% - 40px)}.splash-foot{left:20px;bottom:16px}}
+    @media(max-width:390px){.splash-visual{gap:5px;opacity:.74}.photo-column{gap:5px}.photo-card{height:clamp(185px,32svh,270px)}.splash-copy{left:18px;top:44%;width:calc(100% - 36px)}.splash-kicker{font-size:7px;letter-spacing:.12em}.splash-lede{font-size:8px;line-height:1.65}.loader-line{max-width:100%;gap:8px}}
+    @media(max-height:540px) and (min-width:761px){.splash-copy{top:50%;width:min(420px,44vw)}.photo-card{height:46svh}.splash-title{font-size:clamp(34px,5.2vw,60px)}}
+  </style>
 </head>
 <body>
   <main class="landing" id="home">
@@ -56,7 +66,42 @@
     <footer class="footer"><strong>BUSINESS BY DAY · CREATIVE BY INSTINCT</strong><nav class="footer-social" aria-label="Follow Vidhuuu"><a href="https://www.instagram.com/_minieeee_12?mdxt=ZTd5czl5NjZsam1o" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.instagram.com/channel/q8CtyElaYue9RMfD/" target="_blank" rel="noopener noreferrer">Instagram Channel ↗</a><a href="https://youtube.com/@vidhiafterdark?si=PUKyx2zl8AizQsS8" target="_blank" rel="noopener noreferrer">YouTube ↗</a></nav><span>MODEL · PHOTOSHOOT TALENT.</span></footer>
   </main>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <section class="splash" id="splash" aria-label="Portfolio introduction"><div class="splash-copy"><h1 class="splash-title">Vidhuuu</h1><span class="splash-kicker">the creator · GUJARAT, INDIA · MODEL · CREATOR</span><p class="splash-lede">A creative journey shaped by business, personal style and the stories captured between photoshoots.</p><div class="loader-line"><span>LOADING PORTFOLIO</span><span class="loader-track"><i class="loader-fill" id="loaderFill"></i></span><span class="loader-percent" id="loaderPercent">00%</span></div><button class="skip-intro" id="skipIntro" type="button">SKIP INTRO ↗</button></div><div class="splash-visual" aria-hidden="true"><div class="photo-column" id="photoColumnUp"><figure class="photo-card"><img src="/site-media/025-2d6c7d4da78c4842a5af3141d9351476.webp" alt="" fetchpriority="high"/><figcaption class="photo-label">01 · DENIM STYLE</figcaption></figure><figure class="photo-card"><img src="/site-media/031-4514d7a1e27226ca7c0ddefdb45eace3.webp" alt=""/><figcaption class="photo-label">02 · EVERYDAY COLOR</figcaption></figure><figure class="photo-card"><img src="/site-media/032-45ad44432af718b6e9172242cdf3ccf4.webp" alt=""/><figcaption class="photo-label">03 · DRESS STUDY</figcaption></figure><figure class="photo-card"><img src="/site-media/037-64fcdbf14f382eb72e22da7768d56f9e.webp" alt=""/><figcaption class="photo-label">04 · OUTDOOR LOOK</figcaption></figure></div><div class="photo-column reverse" id="photoColumnDown"><figure class="photo-card"><img src="/site-media/003-03a951e211d2d1f9a2125b8db734a136.webp" alt=""/><figcaption class="photo-label">05 · SAREE EDITORIAL</figcaption></figure><figure class="photo-card"><img src="/site-media/007-1727976493835.webp" alt=""/><figcaption class="photo-label">06 · TRADITIONAL</figcaption></figure><figure class="photo-card"><img src="/site-media/013-1791484044601.webp" alt=""/><figcaption class="photo-label">07 · SAREE PORTRAIT</figcaption></figure><figure class="photo-card"><img src="/site-media/015-1791569836030.webp" alt=""/><figcaption class="photo-label">08 · SAREE LOOK</figcaption></figure></div></div><span class="splash-foot">CASUAL · SAREE · SWIM EDITORIAL</span></section>
+  <section class="splash" id="splash" aria-label="Portfolio introduction">
+    <div class="splash-copy">
+      <h1 class="splash-title">Vidhuuu</h1>
+      <span class="splash-kicker">the creator · GUJARAT, INDIA · MODEL · CREATOR</span>
+      <p class="splash-lede">A creative journey shaped by business, personal style and the stories captured between photoshoots.</p>
+      <div class="loader-line"><span>LOADING PORTFOLIO</span><span class="loader-track"><i class="loader-fill" id="loaderFill"></i></span><span class="loader-percent" id="loaderPercent">00%</span></div>
+      <button class="skip-intro" id="skipIntro" type="button">SKIP INTRO ↗</button>
+    </div>
+    <div class="splash-visual" aria-hidden="true">
+      <div class="photo-column">
+        <figure class="photo-card"><img src="/site-media/025-2d6c7d4da78c4842a5af3141d9351476.webp" alt="" fetchpriority="high"/><figcaption class="photo-label">01 · DENIM STYLE</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/003-03a951e211d2d1f9a2125b8db734a136.webp" alt=""/><figcaption class="photo-label">05 · SAREE EDITORIAL</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/032-45ad44432af718b6e9172242cdf3ccf4.webp" alt=""/><figcaption class="photo-label">03 · DRESS STUDY</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/015-1791569836030.webp" alt=""/><figcaption class="photo-label">08 · SAREE LOOK</figcaption></figure>
+      </div>
+      <div class="photo-column">
+        <figure class="photo-card"><img src="/site-media/031-4514d7a1e27226ca7c0ddefdb45eace3.webp" alt=""/><figcaption class="photo-label">02 · EVERYDAY COLOR</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/007-1727976493835.webp" alt=""/><figcaption class="photo-label">06 · TRADITIONAL</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/037-64fcdbf14f382eb72e22da7768d56f9e.webp" alt=""/><figcaption class="photo-label">04 · OUTDOOR LOOK</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/013-1791484044601.webp" alt=""/><figcaption class="photo-label">07 · SAREE PORTRAIT</figcaption></figure>
+      </div>
+      <div class="photo-column photo-column-wide">
+        <figure class="photo-card"><img src="/site-media/032-45ad44432af718b6e9172242cdf3ccf4.webp" alt=""/><figcaption class="photo-label">03 · DRESS STUDY</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/015-1791569836030.webp" alt=""/><figcaption class="photo-label">08 · SAREE LOOK</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/025-2d6c7d4da78c4842a5af3141d9351476.webp" alt=""/><figcaption class="photo-label">01 · DENIM STYLE</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/003-03a951e211d2d1f9a2125b8db734a136.webp" alt=""/><figcaption class="photo-label">05 · SAREE EDITORIAL</figcaption></figure>
+      </div>
+      <div class="photo-column photo-column-wide">
+        <figure class="photo-card"><img src="/site-media/013-1791484044601.webp" alt=""/><figcaption class="photo-label">07 · SAREE PORTRAIT</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/037-64fcdbf14f382eb72e22da7768d56f9e.webp" alt=""/><figcaption class="photo-label">04 · OUTDOOR LOOK</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/007-1727976493835.webp" alt=""/><figcaption class="photo-label">06 · TRADITIONAL</figcaption></figure>
+        <figure class="photo-card"><img src="/site-media/031-4514d7a1e27226ca7c0ddefdb45eace3.webp" alt=""/><figcaption class="photo-label">02 · EVERYDAY COLOR</figcaption></figure>
+      </div>
+    </div>
+    <span class="splash-foot">CASUAL · SAREE · SWIM EDITORIAL</span>
+  </section>
   <script type="module">
     import { gsap } from 'gsap';
     const splash=document.getElementById('splash');
@@ -64,7 +109,7 @@
     columns.forEach(column=>[...column.children].forEach(card=>column.appendChild(card.cloneNode(true))));
     const percent={value:0};
     gsap.set(columns,{autoAlpha:0,x:18});
-    const columnMotion=columns.map((column,index)=>{const loopDistance=column.scrollHeight/2;return gsap.fromTo(column,{y:index===0?0:-loopDistance},{y:index===0?-loopDistance:0,duration:index===0?9:10.5,ease:'none',repeat:-1});});
+    const columnMotion=columns.map((column,index)=>{const loopDistance=column.scrollHeight/2;const movesUp=index%2===0;return gsap.fromTo(column,{y:movesUp?0:-loopDistance},{y:movesUp?-loopDistance:0,duration:movesUp?15:18,ease:'none',repeat:-1});});
     const loader=gsap.timeline({onComplete:finishIntro});
     loader.to(columns,{autoAlpha:1,x:0,duration:.72,stagger:.16,ease:'power2.out'},0);
     loader.to(percent,{value:100,duration:2.75,ease:'none',onUpdate(){document.getElementById('loaderFill').style.width=percent.value+'%';document.getElementById('loaderPercent').textContent=String(Math.round(percent.value)).padStart(2,'0')+'%';}},0);
