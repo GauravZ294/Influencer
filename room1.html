@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#09090d" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content="Room 01 — the creator's casual and denim fashion portfolio in a 3D museum corridor." />
+  <title>Casual Room — the creator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    .logo{font-size:21px;letter-spacing:-.055em;white-space:nowrap}
+    :root{color-scheme:dark;--bg:#09090d;--ink:#f2edf0;--muted:#c8bec8;--rose:#dfaeb9;--gold:#c9ad88;--glass:rgba(17,15,21,.62);--line:rgba(239,220,226,.19);--mono:'DM Mono',monospace;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif}
+    *{box-sizing:border-box}html,body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:var(--sans);scrollbar-color:#67596a #0b0a0e}body{overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}.scroll-track{height:calc(var(--room-count,6)*160svh);position:relative}.stage{position:sticky;top:0;width:100%;height:100svh;min-height:540px;overflow:hidden;background:radial-gradient(ellipse at 50% 44%,#29232d,#09090d 72%)}#museum{position:absolute;inset:0;width:100%;height:100%;display:block;outline:none}.stage:after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(4,4,7,.36),transparent 24%,transparent 76%,rgba(4,4,7,.3)),linear-gradient(0deg,rgba(5,5,8,.48),transparent 30%,rgba(5,5,8,.12))}
+    .hud{position:absolute;inset:0 0 auto;z-index:5;min-height:76px;padding:0 clamp(18px,5vw,76px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(9,8,12,.82),rgba(9,8,12,.18));backdrop-filter:blur(12px)}.logo{font:500 25px var(--serif);letter-spacing:-.09em}.logo i{color:var(--rose);font-style:normal}.hud-center{display:flex;align-items:center;gap:18px;color:#dfd5df;font:8px var(--mono);letter-spacing:.14em}.counter{color:#f3e9ef;white-space:nowrap}.progress{width:clamp(62px,10vw,150px);height:1px;background:#ffffff35;position:relative}.progress i{position:absolute;inset:0 auto 0 0;width:0;background:var(--rose);box-shadow:0 0 12px #dfaeb9}.hud-actions{justify-self:end;display:flex;align-items:center;gap:10px}.hud-button,.sound-button{border:1px solid #ffffff3b;background:rgba(20,17,23,.42);padding:10px 12px;color:#f0e8ef;font:8px var(--mono);letter-spacing:.1em;cursor:pointer;backdrop-filter:blur(9px);transition:background .2s,border-color .2s}.hud-button:hover,.sound-button:hover{border-color:var(--gold);background:rgba(201,173,136,.13)}
+    .intro{position:absolute;z-index:3;left:clamp(22px,8vw,130px);top:50%;width:min(370px,37vw);transform:translateY(-47%);pointer-events:none;text-shadow:0 3px 25px #050408}.eyebrow{color:#e6c3cc;font:8px var(--mono);letter-spacing:.2em;text-transform:uppercase}.intro h1{margin:20px 0 17px;font:400 clamp(62px,8.4vw,122px)/.77 var(--serif);letter-spacing:-.085em}.intro h1 em{color:var(--rose);font-weight:400}.intro p{max-width:350px;color:#e0d6e0;font:10px/1.9 var(--mono);letter-spacing:.035em}.intro .intro-links{display:flex;gap:10px;margin-top:24px;pointer-events:auto}.pill{display:inline-flex;align-items:center;gap:10px;border:1px solid #e1c7a477;padding:12px 14px;color:#f3ebf0;background:rgba(20,16,23,.4);font:7px var(--mono);letter-spacing:.1em;backdrop-filter:blur(8px);transition:.25s}.pill:hover{background:#d7aeba22;border-color:var(--rose)}.scroll-cue{position:absolute;z-index:4;bottom:20px;left:50%;transform:translateX(-50%);color:#e2d8e2;text-align:center;font:7px var(--mono);letter-spacing:.16em;pointer-events:none}.scroll-cue i{display:block;width:1px;height:29px;margin:9px auto 0;background:linear-gradient(var(--rose),transparent);animation:drop 1.3s ease-in-out infinite alternate}.room-caption{position:absolute;z-index:4;right:clamp(18px,5vw,75px);bottom:7.5vh;max-width:250px;text-align:right;color:#e8dfe7;font:7px/1.8 var(--mono);letter-spacing:.13em;text-shadow:0 2px 14px #000}.room-caption strong{display:block;color:#edc3ce;font-weight:400}.room-overlay{position:absolute;z-index:4;right:clamp(18px,7vw,110px);top:50%;transform:translateY(-35%);width:min(310px,31vw);padding:20px 22px;border:1px solid rgba(230,205,217,.23);background:var(--glass);box-shadow:0 22px 70px #0005;backdrop-filter:blur(18px);opacity:0;transition:opacity .3s,transform .4s;pointer-events:none}.room-overlay.visible{opacity:1;transform:translateY(-50%)}.room-overlay .room-index{color:var(--rose);font:8px var(--mono);letter-spacing:.14em}.room-overlay h2{margin:11px 0 8px;font:400 clamp(25px,3vw,38px)/1.05 var(--serif)}.room-overlay p{margin:0;color:#d4cad5;font-size:12px;line-height:1.65}.room-overlay .room-category{margin-top:13px;color:#d9bd98;font:7px var(--mono);letter-spacing:.13em}
+    .sound-button{position:absolute;z-index:5;top:94px;right:clamp(18px,5vw,75px)}.scroll-hint{position:absolute;z-index:4;left:clamp(18px,5vw,75px);bottom:7.5vh;color:#e1d8e2;font:7px/1.9 var(--mono);letter-spacing:.12em}.scroll-hint span{color:var(--rose)}.modal{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:rgba(5,4,8,.82);backdrop-filter:blur(15px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}.modal.open{opacity:1;visibility:visible}.modal-card{width:min(900px,94vw);max-height:90svh;position:relative;padding:10px;border:1px solid #d4b78e75;background:#16131a;box-shadow:0 30px 100px #000a}.modal-media{max-height:calc(90svh - 75px);width:100%;display:block;object-fit:contain;background:#08070b}.modal-label{display:flex;justify-content:space-between;gap:10px;padding:12px 3px 3px;color:#e4d9e4;font:8px var(--mono);letter-spacing:.09em}.modal-close{position:absolute;right:10px;top:10px;z-index:2;width:38px;height:38px;border:1px solid #ffffff55;background:#110f16c9;cursor:pointer;font-size:20px}.error{position:absolute;z-index:8;inset:auto 20px 20px;padding:12px;border:1px solid #ed8792;background:#2a1119;color:#ffe3e7;font:11px var(--mono)}.mobile-menu{display:none}.page-transition{position:fixed;inset:0;z-index:40;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,#302631,#09090d 70%);transform:translateY(101%);transition:transform .48s cubic-bezier(.75,0,.2,1)}.page-transition.active{transform:translateY(0)}
+    @keyframes drop{to{transform:scaleY(.4);opacity:.45}}@media(max-width:700px){.stage{min-height:520px}.hud{min-height:64px;padding:0 15px;grid-template-columns:auto 1fr auto}.logo{font-size:22px}.hud-center{justify-self:center;gap:9px;font-size:6px;letter-spacing:.07em}.progress{width:44px}.hud-actions{gap:5px}.hud-button,.sound-button{padding:8px 8px;font-size:6px;letter-spacing:.04em}.intro{top:116px;left:0;transform:none;width:100%;padding:0 20px;text-align:center}.intro .eyebrow{font-size:6px}.intro h1{font-size:clamp(61px,17vw,92px);margin:13px 0 10px}.intro p{max-width:290px;margin:0 auto;font-size:8px;line-height:1.65}.intro .intro-links{justify-content:center;margin-top:14px}.pill{padding:10px;font-size:6px}.sound-button{top:auto;right:15px;bottom:60px}.room-caption{right:15px;bottom:59px;max-width:150px;font-size:5px}.scroll-hint{left:15px;bottom:59px;max-width:140px;font-size:5px}.scroll-cue{bottom:13px;font-size:6px}.room-overlay{top:auto;right:15px;bottom:105px;transform:translateY(8px);width:min(250px,65vw);padding:13px 14px}.room-overlay.visible{transform:translateY(0)}.room-overlay h2{font-size:24px;margin:8px 0 5px}.room-overlay p{font-size:10px}.room-overlay .room-category,.room-overlay .room-index{font-size:6px}.modal{padding:12px}.modal-card{width:100%}.modal-media{max-height:78svh}}
+    @media(max-width:380px){.hud{padding:0 10px}.hud-center{gap:6px}.progress{width:32px}.hud-button{padding:7px 6px}.room-overlay{left:12px;right:12px;bottom:105px;width:auto}.intro h1{font-size:60px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+  <style>
+    .scene-loader{position:absolute;inset:0;z-index:12;display:grid;align-content:center;justify-items:center;gap:14px;background:radial-gradient(ellipse at center,rgba(31,25,34,.93),rgba(8,7,11,.98));color:#f0e6ed;text-align:center;transition:opacity .5s,visibility .5s}.scene-loader.ready{opacity:0;visibility:hidden;pointer-events:none}.scene-loader b{font:8px var(--mono);letter-spacing:.18em}.scene-loader small{color:#cbbdc9;font:8px var(--mono);letter-spacing:.06em}.loader-orbit{position:relative;width:44px;height:44px;border:1px solid #dfaeb966;border-radius:50%;animation:loader-spin 2.8s linear infinite}.loader-orbit:before,.loader-orbit:after,.loader-orbit i{content:'';position:absolute;width:5px;height:5px;border-radius:50%;background:#dfaeb9;box-shadow:0 0 12px #dfaeb9}.loader-orbit:before{top:3px;left:18px}.loader-orbit:after{bottom:5px;right:4px;background:#c9ad88}.loader-orbit i:first-child{top:17px;left:-2px}.loader-orbit i:nth-child(2){right:9px;top:5px;background:#e9d9e0}.loader-orbit i:nth-child(3){bottom:3px;left:12px;background:#c9ad88}@keyframes loader-spin{to{transform:rotate(360deg)}}.hud{transition:transform .28s ease,opacity .28s ease}body.is-scrolling .hud{transform:translateY(-110%);opacity:0;pointer-events:none}
+  </style>
+  <style>
+    .splash{position:fixed;inset:0;z-index:50;display:grid;align-items:center;padding:clamp(24px,8vw,110px);overflow:hidden;background:#09090d;transition:opacity .7s,visibility .7s}.splash.closed{opacity:0;visibility:hidden;pointer-events:none}.splash img{position:absolute;right:3vw;top:4vh;width:min(57vw,760px);height:92vh;object-fit:cover;object-position:center 34%;filter:saturate(.82);mask-image:linear-gradient(90deg,transparent,#000 20%)}.splash:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#09090d 8%,rgba(9,9,13,.88) 38%,rgba(9,9,13,.08) 100%),linear-gradient(0deg,#09090d 0%,transparent 38%,rgba(9,9,13,.25))}.splash-content{position:relative;z-index:1;max-width:680px}.splash-kicker{color:var(--gold);font:8px var(--mono);letter-spacing:.24em}.splash h1{margin:24px 0 14px;font:400 clamp(68px,11vw,145px)/.82 var(--serif);letter-spacing:-.09em}.splash h1 em{display:block;margin-top:9px;color:var(--rose);font-weight:400}.splash-copy{max-width:390px;color:#ded5df;font:10px/1.9 var(--mono)}.splash-enter{display:flex;align-items:center;gap:24px;margin-top:30px;padding:13px 16px;border:1px solid #d8ba9677;background:#ffffff08;color:#f6edf2;font:8px var(--mono);letter-spacing:.15em;cursor:pointer}.splash-enter span{color:var(--rose);font-size:16px;transition:transform .2s}.splash-enter:hover span{transform:translateX(5px)}.splash-note{position:absolute;z-index:1;right:clamp(20px,5vw,70px);bottom:26px;color:#d7c9d1;font:7px var(--mono);letter-spacing:.16em}.intro{width:min(450px,45vw)}.intro .intro-links{flex-wrap:wrap}.pending-room{align-self:center;color:#d4c7ce;font:7px var(--mono);letter-spacing:.08em}.pending-room b{color:var(--gold);font-weight:400}.modal-card{display:flex;flex-direction:column;width:min(1100px,98vw);height:min(95svh,1000px)}.modal-card #modalContent{display:grid;place-items:center;min-height:0;flex:1}.modal-media{width:100%;height:100%;min-height:0;object-fit:contain;object-position:center}
+    @media(max-width:700px){.splash{padding:24px}.splash img{right:-22vw;top:0;width:110vw;height:100svh;object-position:54% center;opacity:.82;mask-image:linear-gradient(90deg,transparent,#000 18%)}.splash:after{background:linear-gradient(90deg,rgba(9,9,13,.86),rgba(9,9,13,.34)),linear-gradient(0deg,#09090d 0%,transparent 42%)}.splash-content{align-self:end;padding-bottom:14vh}.splash h1{font-size:clamp(65px,16vw,100px)}.splash-copy{font-size:8px}.splash-note{left:24px;right:auto;bottom:22px;font-size:6px}.intro .intro-links{justify-content:center}.pending-room{flex-basis:100%;font-size:6px}.modal{padding:6px}.modal-card{width:100%;height:98svh;padding:7px}}
+  </style>
+  <style>.logo{font-size:21px!important;letter-spacing:-.055em!important;white-space:nowrap}</style>
+  <style>
+    html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  </style>
+  <style>@media(max-width:700px){.hud-center{font-size:7px;gap:7px}.hud-button,.sound-button{font-size:6px}.intro p{font-size:8px}.eyebrow,.scroll-cue,.room-caption,.scroll-hint{font-size:6px}.room-overlay .room-index,.room-overlay .room-category{font-size:7px}}@media(max-width:380px){.hud-center>span:last-child{display:none}.hud-button{font-size:6px;padding:7px 5px}.progress{width:24px}}</style>
+</head>
+<body>
+  <!-- Curated image-only exhibit list: casual styling from the new upload and the main gallery. -->
+  <script>
+    // Casual clothes only: outfit portraits, denim and casual looks.
+    window.MEDIA_ITEMS = [
+      {type:'image',src:'/gallery/025-2d6c7d4da78c4842a5af3141d9351476.webp',title:'Denim in Daylight',category:'CASUAL · DENIM LOOK',description:'An outdoor denim portrait from Vidhuuu’s main photo archive.'},
+      {type:'image',src:'/gallery/031-4514d7a1e27226ca7c0ddefdb45eace3.webp',title:'Print and Color',category:'CASUAL · EVERYDAY STYLE',description:'A colorful printed shirt brings an easy everyday look into the collection.'},
+      {type:'image',src:'/gallery/032-45ad44432af718b6e9172242cdf3ccf4.webp',title:'Color Pop',category:'CASUAL · DRESS LOOK',description:'A bright, easy dress look adds a playful note to Vidhuuu’s casual collection.'},
+      {type:'image',src:'/gallery/037-64fcdbf14f382eb72e22da7768d56f9e.webp',title:'Soft Pattern',category:'CASUAL · OUTDOOR LOOK',description:'A patterned shirt and relaxed denim, photographed outdoors.'},
+      {type:'image',src:'/gallery/055-c062b634ac350ff90b4505f2c707f775.webp',title:'Easy Layers',category:'CASUAL · STREET STYLE',description:'A light patterned layer and cream trousers in a relaxed portrait.'},
+      {type:'image',src:'/gallery/135-file_0000000093088211a0dd316192e37699.webp',title:'Blue Jean Mood',category:'CASUAL · DENIM LOOK',description:'A contemporary denim outfit from the main archive.'},
+      {type:'image',src:'/casual/014-mirror-style-clean.webp',title:'Mirror Style',category:'CASUAL · PERSONAL STYLE',description:'A solo mirror portrait in a black sleeveless top and light trousers.'},
+      {type:'image',src:'/casual/vidhuuu-casual-front.webp',title:'Brown Top · Front View',category:'CASUAL · OUTFIT STUDY',description:'A soft indoor portrait in a brown top and cream trousers from Vidhuuu’s new casual set.'},
+      {type:'image',src:'/casual/vidhuuu-casual-back.webp',title:'Brown Top · Back View',category:'CASUAL · OUTFIT STUDY',description:'A turned pose from the same casual set, showing the back detail of the top.'},
+      {type:'image',src:'/gallery/191-Screenshot_2026-07-26-22-38-51-94_99c04817c0de5652397fc8b56c3b38.webp',title:'Black, After Hours',category:'CASUAL · NIGHT LOOK',description:'A minimal black outfit framed in a quiet monochrome portrait.'},
+      {type:'image',src:'/gallery/192-Screenshot_2026-07-26-22-39-31-48_99c04817c0de5652397fc8b56c3b38.webp',title:'A Softer Frame',category:'CASUAL · PORTRAIT',description:'A second monochrome portrait closes this edit of Vidhuuu’s casual style.'},
+    ];
+  </script>
+
+  <main id="scrollTrack" class="scroll-track">
+    <section class="stage" aria-label="Interactive 3D portfolio gallery">
+      <canvas id="museum" aria-label="A 3D gallery corridor. Scroll to move between rooms."></canvas>
+      <header class="hud">
+        <a class="logo" href="index.html" aria-label="Vidhuuu · All rooms">Vidhuuu</a>
+        <div class="hud-center"><span class="counter"><b id="currentCount">01</b> / <span id="totalCount">006</span></span><span class="progress"><i id="progressBar"></i></span><span id="hudLabel">THE GALLERY</span></div>
+        <div class="hud-actions"><a class="hud-button" href="index.html">← ALL ROOMS</a><a class="hud-button" href="room2.html">SAREE ROOM ↗</a></div>
+      </header>
+      <div class="intro" id="top"><span class="eyebrow">ROOM 01 · THE EVERYDAY CHAPTER</span><h1>Casual<br/><em>Room.</em></h1><p>A four-angle outfit study and selected portraits from Vidhuuu’s casual-style archive.</p><div class="intro-links"><button class="pill" id="enterGallery" type="button">START THE WALK ↓</button><a class="pill" href="index.html">ALL ROOMS ↗</a></div></div>
+      <button id="soundButton" class="sound-button" type="button" aria-pressed="false">SOUND OFF +</button>
+      <div class="scroll-hint"><span>SCROLL</span> TO WALK THE GALLERY<br/>PAUSE TO VIEW EACH CASUAL LOOK</div>
+      <div class="room-caption"><strong>CASUAL · DENIM · EVERYDAY</strong>GUJARAT, INDIA</div>
+      <div class="scene-loader" id="sceneLoader" role="status" aria-live="polite"><span class="loader-orbit"><i></i><i></i><i></i></span><b id="loaderTitle">PREPARING THE CASUAL GALLERY</b><small id="loaderCopy">Loading the first portrait and 3D room</small></div>
+      <article id="roomOverlay" class="room-overlay" aria-live="polite"><span class="room-index" id="overlayIndex">ROOM 01</span><h2 id="overlayTitle">The First Impression</h2><p id="overlayDescription">A quiet introduction, held in warm light.</p><div class="room-category" id="overlayCategory">PORTRAIT · ROOM 01</div></article>
+    </section>
+  </main>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Inspect portfolio media"><div class="modal-card"><button id="modalClose" class="modal-close" type="button" aria-label="Close">×</button><div id="modalContent"></div><div class="modal-label"><span id="modalTitle"></span><span id="modalType"></span></div></div></div>
+  <div id="pageTransition" class="page-transition" aria-hidden="true"></div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+    gsap.registerPlugin(ScrollTrigger);
+    const media = window.MEDIA_ITEMS;
+    const $ = (id) => document.getElementById(id);
+    let navIdleTimer;window.addEventListener('scroll',()=>{document.body.classList.add('is-scrolling');window.clearTimeout(navIdleTimer);navIdleTimer=window.setTimeout(()=>document.body.classList.remove('is-scrolling'),1250);},{passive:true});
+    document.querySelectorAll('a[href]').forEach((link)=>link.addEventListener('click',(event)=>{const target=new URL(link.href,location.href);if(target.origin!==location.origin||target.pathname===location.pathname||target.hash)return;event.preventDefault();$('pageTransition').classList.add('active');setTimeout(()=>location.assign(target.href),480);}));
+    $('totalCount').textContent = String(media.length).padStart(3, '0');
+    $('scrollTrack').style.setProperty('--room-count', media.length+1);
+
+    const canvas = $('museum');
+    let sceneRendered=false;let firstArtReady=false;let firstArtFailed=false;
+    function finishLoading(){if(sceneRendered&&firstArtReady){$('loaderTitle').textContent=firstArtFailed?'CASUAL ROOM READY':'CASUAL GALLERY READY';$('loaderCopy').textContent=firstArtFailed?'The room is ready; the first portrait could not load.':'The first look is in place.';$('sceneLoader').classList.add('ready');}}
+    let renderer;
+    try{renderer=new THREE.WebGLRenderer({canvas, antialias:true, alpha:false, powerPreference:'high-performance'});}catch(error){$('loaderTitle').textContent='3D VIEW UNAVAILABLE';$('loaderCopy').textContent='Open this page through npm run dev in a WebGL-capable browser.';console.error('Unable to create the Room 1 WebGL renderer.',error);throw error;}
+    canvas.addEventListener('webglcontextlost',(event)=>{event.preventDefault();$('sceneLoader').classList.remove('ready');$('loaderTitle').textContent='RESTORING THE GALLERY';$('loaderCopy').textContent='The 3D context was interrupted. Please wait.';});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.7));
+    renderer.setSize(innerWidth, innerHeight, false);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#0b0a0f');
+    scene.fog = new THREE.FogExp2('#111018', 0.018);
+    const camera = new THREE.PerspectiveCamera(innerWidth < 700 ? 66 : 52, innerWidth/innerHeight, 0.1, 180);
+    camera.position.set(0, 1.72, 7);
+    const lookTarget = new THREE.Vector3(0,1.62,0);
+
+    scene.add(new THREE.HemisphereLight('#d7c9eb','#17141c',1.15));
+    const ambient = new THREE.AmbientLight('#b7a8c2',0.42); scene.add(ambient);
+    const keyLight = new THREE.PointLight('#e7bbcc',45,42,2); keyLight.position.set(0,5,-13); scene.add(keyLight);
+    const blueLight = new THREE.PointLight('#668dff',35,34,2); blueLight.position.set(-4,3,-24); scene.add(blueLight);
+    const pinkLight = new THREE.PointLight('#df77ae',32,34,2); pinkLight.position.set(4,3,-40); scene.add(pinkLight);
+
+    const MAT = {
+      wall:new THREE.MeshStandardMaterial({color:'#211d27',roughness:.72,metalness:.18,side:THREE.BackSide}),
+      floor:new THREE.MeshStandardMaterial({color:'#24202a',roughness:.23,metalness:.7}),
+      trim:new THREE.MeshStandardMaterial({color:'#b99c77',roughness:.32,metalness:.78}),
+      door:new THREE.MeshStandardMaterial({color:'#302936',roughness:.34,metalness:.42}),
+      dark:new THREE.MeshStandardMaterial({color:'#121117',roughness:.46,metalness:.55}),
+      frame:new THREE.MeshStandardMaterial({color:'#241b28',roughness:.35,metalness:.72}),
+      fallback:new THREE.MeshStandardMaterial({color:'#5e4a5e',emissive:'#261a2c',emissiveIntensity:.8,roughness:.6}),
+    };
+    const box=(w,h,d,mat,parent,x=0,y=0,z=0)=>{const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);mesh.position.set(x,y,z);parent.add(mesh);return mesh;};
+
+    // Long architectural shell; repeated ribs and lights make each scroll stop read as a gallery room.
+    const shell=new THREE.Group();scene.add(shell);
+    const ROOM_SPACING=40;
+    const museumRoomCount=Math.ceil(media.length/2);
+    const corridorLength=museumRoomCount*ROOM_SPACING+26;
+    const floor=box(12,.22,corridorLength,MAT.floor,shell,0,-.12,-corridorLength/2+7);
+    const ceiling=box(12,.22,corridorLength,MAT.wall,shell,0,6.7,-corridorLength/2+7);
+    box(.24,6.8,corridorLength,MAT.wall,shell,-6,3.25,-corridorLength/2+7);
+    box(.24,6.8,corridorLength,MAT.wall,shell,6,3.25,-corridorLength/2+7);
+    // Reflective floor inlay strips.
+    for(let x of [-4.8,0,4.8]){const strip=new THREE.Mesh(new THREE.BoxGeometry(.025,.012,corridorLength),new THREE.MeshBasicMaterial({color:x===0?'#a98da8':'#6470a0',transparent:true,opacity:x===0?.42:.24}));strip.position.set(x,.005,-corridorLength/2+7);shell.add(strip);}
+    const rooms=[];
+    const museumRooms=[];
+    const imageGeometry=new THREE.PlaneGeometry(3.1,4.15);
+    const themes=[
+      {wall:'#211b2a',fog:'#17121e',accent:'#c792da',key:'#e6c0d4',floor:'#292231'},
+      {wall:'#17232c',fog:'#0e1820',accent:'#74c6d0',key:'#c1e8e4',floor:'#202c32'},
+      {wall:'#2a1a25',fog:'#1b1018',accent:'#e18aaf',key:'#ffd5bd',floor:'#30202b'},
+      {wall:'#1d2322',fog:'#111817',accent:'#b4cf92',key:'#e2ecc9',floor:'#242c27'},
+    ];
+    for(let roomIndex=0;roomIndex<museumRoomCount;roomIndex++){
+      const theme=themes[roomIndex%themes.length];
+      const doorZ=-8-roomIndex*ROOM_SPACING;
+      // One monumental entrance per two portraits: doors stay open while visitors turn from left to right.
+      const doors=new THREE.Group();doors.position.set(0,0,doorZ);scene.add(doors);
+      const leftPivot=new THREE.Group();leftPivot.position.set(-1.72,0,0);doors.add(leftPivot);
+      // Slightly overlap the leaves at the center seam so the closed portal has no visible slit.
+      box(1.82,4.8,.24,MAT.door,leftPivot,.86,2.35,.025);
+      box(.055,4.7,.05,MAT.trim,leftPivot,1.58,2.35,.14);
+      box(.045,4.65,.05,MAT.trim,leftPivot,.15,2.35,.14);
+      box(.06,4.78,.07,MAT.trim,leftPivot,1.68,2.35,.14);
+      box(.07,.07,.16,MAT.trim,leftPivot,1.43,2.25,.2);
+      const rightPivot=new THREE.Group();rightPivot.position.set(1.72,0,0);doors.add(rightPivot);
+      box(1.82,4.8,.24,MAT.door,rightPivot,-.86,2.35,-.025);
+      box(.055,4.7,.05,MAT.trim,rightPivot,-1.58,2.35,.14);
+      box(.045,4.65,.05,MAT.trim,rightPivot,-.15,2.35,.14);
+      box(.06,4.78,.07,MAT.trim,rightPivot,-1.68,2.35,.14);
+      box(.07,.07,.16,MAT.trim,rightPivot,-1.43,2.25,.2);
+      box(.16,5.35,.28,MAT.trim,doors,-3.55,2.62,0);box(.16,5.35,.28,MAT.trim,doors,3.55,2.62,0);
+      box(7.2,.16,.3,MAT.trim,doors,0,5.28,0);
+      const plaque=new THREE.Mesh(new THREE.BoxGeometry(1.8,.38,.08),MAT.dark);plaque.position.set(0,5.65,-.05);doors.add(plaque);
+      const doorGlow=new THREE.PointLight(theme.accent,4.5,10,2);doorGlow.position.set(0,4.9,-1);doors.add(doorGlow);
+      const chamberLight=new THREE.PointLight(theme.accent,13,25,1.4);chamberLight.position.set(0,5,doorZ-19);scene.add(chamberLight);
+      const chamberWash=new THREE.PointLight(theme.key,6,22,1.7);chamberWash.position.set(0,2.3,doorZ-22);scene.add(chamberWash);
+      museumRooms.push({doorZ,doors,leftPivot,rightPivot,doorGlow,chamberLight,chamberWash,theme});
+    }
+    for(let i=0;i<media.length;i++){
+      const roomIndex=Math.floor(i/2);const museumRoom=museumRooms[roomIndex];
+      const side=i%2===0?-1:1;
+      const focusZ=museumRoom.doorZ-12-(i%2)*13;
+      // Portraits alternate between the left and right gallery walls in the same chamber.
+      const frameGroup=new THREE.Group();frameGroup.position.set(side*5.68,2.8,focusZ);frameGroup.rotation.y=side<0?Math.PI/2:-Math.PI/2;frameGroup.visible=false;scene.add(frameGroup);
+      box(3.48,4.58,.18,MAT.dark,frameGroup,0,0,-.14);
+      const artMaterial=MAT.fallback.clone();
+      const art=new THREE.Mesh(imageGeometry,artMaterial);art.position.z=-.035;frameGroup.add(art);
+      // Luminous frame border.
+      const frameColor=themes[roomIndex%themes.length].accent;
+      const glowMat=new THREE.MeshBasicMaterial({color:frameColor});
+      box(3.56,.055,.06,glowMat,frameGroup,0,2.3,.02);box(3.56,.055,.06,glowMat,frameGroup,0,-2.3,.02);
+      box(.055,4.6,.06,glowMat,frameGroup,-1.78,0,.02);box(.055,4.6,.06,glowMat,frameGroup,1.78,0,.02);
+      const frameLight=new THREE.PointLight(frameColor,5.5,7,2);frameLight.position.set(0,0,1.2);frameGroup.add(frameLight);
+      const floorPool=new THREE.Mesh(new THREE.CircleGeometry(2.2,48),new THREE.MeshBasicMaterial({color:frameColor,transparent:true,opacity:.075,depthWrite:false}));floorPool.rotation.x=-Math.PI/2;floorPool.position.set(side*4.2,.012,focusZ);floorPool.visible=false;scene.add(floorPool);
+      rooms.push({doorZ:museumRoom.doorZ,focusZ,side,roomIndex,frameGroup,floorPool,art,artMaterial,frameLight});
+    }
+
+    // Portal ribs and sconces are spaced by chamber, not by individual portrait.
+    for(let i=0;i<=museumRoomCount;i++){
+      const z=-2-i*ROOM_SPACING;
+      const theme=themes[i%themes.length];
+      for(const x of [-5.75,5.75]){
+        const rib=box(.1,6.48,.12,MAT.trim,shell,x,3.18,z);
+        const sconce=new THREE.PointLight(theme.accent,4,9,2);sconce.position.set(x>0?-5.2:5.2,4.9,z-2);shell.add(sconce);
+      }
+      box(10.8,.055,.12,MAT.trim,shell,0,6.35,z);
+    }
+
+    // Floating dust motes use a single buffer geometry and additive material.
+    const dustCount=520;const dustPositions=new Float32Array(dustCount*3);
+    for(let i=0;i<dustCount;i++){dustPositions[i*3]=(Math.random()-.5)*10;dustPositions[i*3+1]=Math.random()*6;dustPositions[i*3+2]=7-Math.random()*(museumRoomCount*ROOM_SPACING+25);}
+    const dustGeometry=new THREE.BufferGeometry();dustGeometry.setAttribute('position',new THREE.BufferAttribute(dustPositions,3));
+    const dust=new THREE.Points(dustGeometry,new THREE.PointsMaterial({color:'#e4cde7',size:.027,transparent:true,opacity:.57,sizeAttenuation:true,depthWrite:false,blending:THREE.AdditiveBlending}));scene.add(dust);
+
+    // Text on 3D door plaques, drawn to canvas so the file stays self-contained.
+    function plaqueTexture(index){const c=document.createElement('canvas');c.width=512;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='#15121a';ctx.fillRect(0,0,512,128);ctx.strokeStyle='#c9ad88';ctx.lineWidth=2;ctx.strokeRect(4,4,504,120);ctx.fillStyle='#f0e6ed';ctx.font='500 38px "DM Mono", monospace';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(`ROOM ${String(index+1).padStart(2,'0')}`,256,65);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t;}
+    museumRooms.forEach((room,index)=>{const mat=new THREE.MeshBasicMaterial({map:plaqueTexture(index)});const p=room.doors.children.find(o=>o.geometry?.type==='BoxGeometry'&&o.position.y===5.65);if(p)p.material=mat;});
+
+    // GPU window: current room, previous room, and next room only.
+    const textureLoader=new THREE.TextureLoader();
+    const loaded=new Map();
+    const videoNodes=new Map();
+    let activeRoom=-1;
+    let activePage=0;
+    let activeThemeIndex=-1;
+    const targetThemeFog=new THREE.Color(themes[0].fog);
+    const targetThemeAccent=new THREE.Color(themes[0].accent);
+    const targetThemeKey=new THREE.Color(themes[0].key);
+    const targetThemeWall=new THREE.Color(themes[0].wall);
+    const targetThemeFloor=new THREE.Color(themes[0].floor);
+    function disposeEntry(index){
+      const entry=loaded.get(index);if(!entry)return;
+      if(entry.texture){entry.texture.dispose();}
+      if(entry.video){entry.video.pause();entry.video.removeAttribute('src');entry.video.load();entry.video.remove();videoNodes.delete(index);}
+      loaded.delete(index);
+    }
+    function fitArtwork(index,width,height){
+      const room=rooms[index];if(!room||!width||!height)return;
+      const frameAspect=3.1/4.15;const imageAspect=width/height;
+      if(imageAspect>frameAspect)room.art.scale.set(1,frameAspect/imageAspect,1);
+      else room.art.scale.set(imageAspect/frameAspect,1,1);
+    }
+    function assignTexture(index,texture){
+      const room=rooms[index];if(!room)return;
+      texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+      room.artMaterial.map=texture;room.artMaterial.color.set('#ffffff');room.artMaterial.needsUpdate=true;
+      const image=texture.image;fitArtwork(index,image?.videoWidth||image?.naturalWidth||image?.width,image?.videoHeight||image?.naturalHeight||image?.height);
+      if(index===0&&room.artMaterial.map){firstArtReady=true;finishLoading();}
+    }
+    function ensureRoom(index){
+      if(index<0||index>=media.length||loaded.has(index))return;
+      const item=media[index];
+      if(item.type==='video'){
+        const video=document.createElement('video');video.crossOrigin='anonymous';video.muted=true;video.loop=true;video.playsInline=true;video.preload='metadata';video.setAttribute('playsinline','');video.style.display='none';video.src=item.src;document.body.appendChild(video);videoNodes.set(index,video);
+        const texture=new THREE.VideoTexture(video);texture.colorSpace=THREE.SRGBColorSpace;texture.minFilter=THREE.LinearFilter;texture.magFilter=THREE.LinearFilter;
+        loaded.set(index,{texture,video});assignTexture(index,texture);
+        video.addEventListener('loadedmetadata',()=>fitArtwork(index,video.videoWidth,video.videoHeight),{once:true});
+        video.play().catch(()=>{});
+      }else{
+        loaded.set(index,{loading:true});
+        textureLoader.load(item.src,(texture)=>{
+          const entry=loaded.get(index);if(!entry){texture.dispose();return;}
+          entry.texture=texture;entry.loading=false;assignTexture(index,texture);
+        },undefined,()=>{const entry=loaded.get(index);if(entry)entry.loading=false;if(index===0){firstArtFailed=true;firstArtReady=true;finishLoading();}});
+      }
+    }
+    function setActiveRoom(index){
+      index=Math.max(0,Math.min(media.length-1,index));
+      if(index===activeRoom)return;
+      activeRoom=index;
+      for(let i=0;i<media.length;i++)if(i<index-1||i>index+1)disposeEntry(i);
+      for(let i=Math.max(0,index-1);i<=Math.min(media.length-1,index+1);i++)ensureRoom(i);
+      rooms.forEach((room,i)=>{if(i!==index&&room.artMaterial.map){room.artMaterial.map=null;room.artMaterial.needsUpdate=true;}});
+      const activeEntry=loaded.get(index);if(activeEntry?.texture)assignTexture(index,activeEntry.texture);
+      const item=media[index];
+      $('currentCount').textContent=String(index+1).padStart(2,'0');
+      $('progressBar').style.width=`${((index+1)/media.length)*100}%`;
+      $('hudLabel').textContent=item.category.split('·')[0].trim().toUpperCase();
+      $('overlayIndex').textContent=`ROOM ${String(index+1).padStart(2,'0')} / ${String(media.length).padStart(3,'0')}`;
+      $('overlayTitle').textContent=item.title;
+      $('overlayDescription').textContent=item.description;
+      $('overlayCategory').textContent=item.category;
+      $('roomOverlay').classList.add('visible');
+    }
+
+    // Click or tap a lit artwork frame to inspect its image/video in a modal.
+    const raycaster=new THREE.Raycaster();const pointer=new THREE.Vector2();
+    canvas.addEventListener('pointerup',(event)=>{
+      if(event.pointerType==='touch'&&Math.abs(event.clientX-(canvas._downX||event.clientX))>12)return;
+      const rect=canvas.getBoundingClientRect();pointer.x=((event.clientX-rect.left)/rect.width)*2-1;pointer.y=-((event.clientY-rect.top)/rect.height)*2+1;
+      raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(rooms.map(r=>r.art),false);
+      if(hits.length){let index=rooms.indexOf(rooms.find(r=>r.art===hits[0].object));if(index>=0){setActiveRoom(index);openModal(index);}}
+    });
+    canvas.addEventListener('pointerdown',(event)=>{canvas._downX=event.clientX;});
+    function openModal(index){
+      const item=media[index];const host=$('modalContent');host.replaceChildren();
+      let el;
+      if(item.type==='video'){el=document.createElement('video');el.src=item.src;el.controls=true;el.autoplay=true;el.muted=true;el.loop=true;el.playsInline=true;}
+      else{el=document.createElement('img');el.src=item.src;el.alt=item.title;}
+      el.className='modal-media';host.appendChild(el);$('modalTitle').textContent=item.title;$('modalType').textContent=item.category;$('modal').classList.add('open');
+    }
+    function closeModal(){$('modal').classList.remove('open');const v=$('modalContent').querySelector('video');if(v){v.pause();v.removeAttribute('src');v.load();}$('modalContent').replaceChildren();}
+    $('modalClose').addEventListener('click',closeModal);$('modal').addEventListener('click',(event)=>{if(event.target===$('modal'))closeModal();});window.addEventListener('keydown',(event)=>{if(event.key==='Escape')closeModal();});
+
+    const cameraState={x:0,y:1.72,z:7,tx:0,ty:1.62,tz:0};
+    const timeline=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#scrollTrack',start:'top top',end:'bottom bottom',scrub:1.35,invalidateOnRefresh:true,onUpdate(self){
+      const pageUnit=self.progress*(media.length+1);
+      // Keep every wall portrait hidden in the opening hero view; reveal it after its doorway opens.
+      rooms.forEach((room,index)=>{const revealAt=index+1+(index%2===0 ? 0.24 : 0.04);const visible=pageUnit>=revealAt;room.frameGroup.visible=visible;room.floorPool.visible=visible;});
+      const pageIndex=Math.min(media.length,Math.floor(pageUnit));
+      activePage=pageIndex;
+      if(pageIndex===0){
+        $('currentCount').textContent='00';$('hudLabel').textContent='HOME';$('roomOverlay').classList.remove('visible');
+        targetThemeFog.set(themes[0].fog);targetThemeAccent.set(themes[0].accent);targetThemeKey.set(themes[0].key);targetThemeWall.set(themes[0].wall);targetThemeFloor.set(themes[0].floor);activeThemeIndex=0;
+      }else{
+        const roomIndex=Math.min(media.length-1,pageIndex-1);
+        setActiveRoom(roomIndex);
+        const roomPhase=pageUnit-Math.floor(pageUnit);
+        $('roomOverlay').classList.toggle('visible',roomPhase>.22&&roomPhase<.75);
+        const themeIndex=Math.floor(roomIndex/2)%themes.length;
+        if(themeIndex!==activeThemeIndex){activeThemeIndex=themeIndex;const theme=themes[themeIndex];targetThemeFog.set(theme.fog);targetThemeAccent.set(theme.accent);targetThemeKey.set(theme.key);targetThemeWall.set(theme.wall);targetThemeFloor.set(theme.floor);}
+      }
+      $('progressBar').style.width=`${self.progress*100}%`;
+      $('top').style.opacity=pageUnit<.65?'1':pageUnit<1?String(1-(pageUnit-.65)/.35):'0';
+      $('top').style.transition='opacity .25s';
+    }}});
+    const HOME_SEGMENT=4.2;
+    timeline.to(cameraState,{x:0,y:1.72,z:7,tx:0,ty:1.62,tz:0,duration:HOME_SEGMENT},0);
+    const segment=4.2;
+    media.forEach((_,i)=>{
+      const room=rooms[i];const chamber=museumRooms[room.roomIndex];const start=HOME_SEGMENT+i*segment;const focusZ=room.focusZ;const side=room.side;
+      if(i===0)timeline.set(cameraState,{x:0,y:1.72,z:7,tx:0,ty:1.62,tz:0},start);
+      if(i%2===0){
+        const approachZ=chamber.doorZ+3.2;
+        // Open one entrance, pass through, and reveal the left-wall portrait.
+        timeline.to(cameraState,{x:0,z:approachZ,tx:0,ty:1.62,tz:approachZ-8,duration:.55,ease:'power1.inOut'},start);
+        timeline.to(chamber.leftPivot.rotation,{y:-1.24,duration:.52,ease:'power2.inOut'},start);
+        timeline.to(chamber.rightPivot.rotation,{y:1.24,duration:.52,ease:'power2.inOut'},start);
+        timeline.to(cameraState,{z:chamber.doorZ-3.2,tz:chamber.doorZ-10,duration:.42,ease:'power1.inOut'},start+.52);
+        timeline.to(cameraState,{x:side*2.12,y:1.92,z:focusZ,tx:side*5.68,ty:2.65,tz:focusZ,duration:.78,ease:'power2.inOut'},start+.94);
+        timeline.to(cameraState,{x:side*2.12,y:1.92,z:focusZ,tx:side*5.68,ty:2.65,tz:focusZ,duration:.72},start+1.72);
+        // Center up in the same open chamber, ready to turn toward its opposite wall.
+        timeline.to(cameraState,{x:0,y:1.72,z:focusZ-5,tx:0,ty:1.62,tz:focusZ-12,duration:.62,ease:'power2.inOut'},start+2.44);
+      }else{
+        // Turn across the chamber to its right wall; no doorway between the paired portraits.
+        timeline.to(cameraState,{x:side*2.12,y:1.92,z:focusZ,tx:side*5.68,ty:2.65,tz:focusZ,duration:.9,ease:'power2.inOut'},start);
+        timeline.to(cameraState,{x:side*2.12,y:1.92,z:focusZ,tx:side*5.68,ty:2.65,tz:focusZ,duration:.7},start+.9);
+        // Walk toward the next chamber, closing this room's entrance behind the visitor.
+        const nextApproach=chamber.doorZ-ROOM_SPACING+3.2;
+        timeline.to(cameraState,{x:0,y:1.72,z:nextApproach,tx:0,ty:1.62,tz:nextApproach-8,duration:1.25,ease:'power2.inOut'},start+1.6);
+        timeline.to(chamber.leftPivot.rotation,{y:0,duration:.48,ease:'power2.inOut'},start+2.56);
+        timeline.to(chamber.rightPivot.rotation,{y:0,duration:.48,ease:'power2.inOut'},start+2.56);
+      }
+    });
+    timeline.to({}, {duration:0.01},HOME_SEGMENT+media.length*segment);
+
+    function goToPage(pageIndex){
+      const trigger=ScrollTrigger.getAll().find(t=>t.trigger===$('scrollTrack'));
+      if(trigger){const p=pageIndex/(media.length+1);window.scrollTo({top:trigger.start+(trigger.end-trigger.start)*p,behavior:'smooth'});}
+    }
+    $('enterGallery').addEventListener('click',()=>goToPage(1));
+
+    let soundOn=false;let audioContext=null;let audioMaster=null;let oscillators=[];
+    $('soundButton').addEventListener('click',async()=>{
+      soundOn=!soundOn;$('soundButton').textContent=soundOn?'SOUND ON −':'SOUND OFF +';$('soundButton').setAttribute('aria-pressed',String(soundOn));
+      if(soundOn&&!audioContext){const AC=window.AudioContext||window.webkitAudioContext;if(AC){audioContext=new AC();audioMaster=audioContext.createGain();audioMaster.gain.value=0;audioMaster.connect(audioContext.destination);[110,164.81,220].forEach((frequency,i)=>{const osc=audioContext.createOscillator();const gain=audioContext.createGain();osc.type=i===1?'triangle':'sine';osc.frequency.value=frequency;gain.gain.value=.14;osc.connect(gain);gain.connect(audioMaster);osc.start();oscillators.push(osc);});}}
+      if(audioContext){await audioContext.resume();audioMaster.gain.setTargetAtTime(soundOn?.025:0,audioContext.currentTime,.3);}
+    });
+
+    function resize(){const w=innerWidth,h=innerHeight;renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,w<700?1.25:1.7));renderer.setSize(w,h,false);camera.aspect=w/h;camera.fov=w<700?66:52;camera.updateProjectionMatrix();ScrollTrigger.refresh();}
+    window.addEventListener('resize',resize,{passive:true});
+    const clock=new THREE.Clock();
+    renderer.setAnimationLoop(()=>{
+      const dt=Math.min(clock.getDelta(),.05);
+      camera.position.x=THREE.MathUtils.damp(camera.position.x,cameraState.x,5,dt);
+      camera.position.y=THREE.MathUtils.damp(camera.position.y,cameraState.y,5,dt);
+      camera.position.z=THREE.MathUtils.damp(camera.position.z,cameraState.z,5,dt);
+      lookTarget.x=THREE.MathUtils.damp(lookTarget.x,cameraState.tx,5,dt);lookTarget.y=THREE.MathUtils.damp(lookTarget.y,cameraState.ty,5,dt);lookTarget.z=THREE.MathUtils.damp(lookTarget.z,cameraState.tz,5,dt);
+      camera.lookAt(lookTarget);
+      scene.background.lerp(targetThemeFog,Math.min(1,dt*.7));scene.fog.color.lerp(targetThemeFog,Math.min(1,dt*.7));
+      MAT.wall.color.lerp(targetThemeWall,Math.min(1,dt*.8));MAT.floor.color.lerp(targetThemeFloor,Math.min(1,dt*.8));
+      keyLight.color.lerp(targetThemeKey,Math.min(1,dt*1.2));blueLight.color.lerp(targetThemeAccent,Math.min(1,dt*1.2));
+      const p=dustGeometry.attributes.position;for(let i=0;i<dustCount;i++){p.array[i*3+1]+=Math.sin(clock.elapsedTime*.6+i)*.00016;if(p.array[i*3+1]>6)p.array[i*3+1]=0;}p.needsUpdate=true;
+      renderer.render(scene,camera);
+      if(!sceneRendered){sceneRendered=true;finishLoading();}
+    });
+    setActiveRoom(0);
+    $('currentCount').textContent='00';$('hudLabel').textContent='HOME';$('roomOverlay').classList.remove('visible');
+    window.addEventListener('beforeunload',()=>{ScrollTrigger.getAll().forEach(t=>t.kill());loaded.forEach((_,i)=>disposeEntry(i));oscillators.forEach(o=>o.stop());audioContext?.close();renderer.dispose();});
+  </script>
+</body>
+</html>

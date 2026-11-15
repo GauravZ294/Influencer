@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#080b12" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content="Room 02 — the creator's saree portrait gallery in the Orbit Atrium." />
+  <title>Saree Room — Orbit Atrium · the creator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    .brand{font-size:21px;letter-spacing:-.055em;white-space:nowrap}
+    .intro{transition:opacity .18s ease}
+    :root{color-scheme:dark;--bg:#080b12;--ink:#f1f0f5;--muted:#c5c7d1;--ice:#9de9ee;--violet:#b3a4fa;--glass:rgba(10,15,23,.66);--line:rgba(191,227,239,.23);--mono:'DM Mono',monospace;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif}
+    *{box-sizing:border-box}html,body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:var(--sans);scrollbar-color:#536274 #080b12}body{overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}.track{height:calc(var(--item-count,6)*165svh);position:relative}.stage{position:sticky;top:0;width:100%;height:100svh;min-height:520px;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#1d2a37,#080b12 71%)}#atrium{position:absolute;inset:0;width:100%;height:100%;display:block;outline:0}.stage:after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,transparent 32%,rgba(3,6,12,.48) 100%),linear-gradient(0deg,rgba(4,7,13,.48),transparent 32%,rgba(4,7,13,.12))}
+    .hud{position:absolute;inset:0 0 auto;z-index:5;min-height:72px;padding:0 clamp(16px,4vw,64px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid rgba(211,236,244,.16);background:linear-gradient(180deg,rgba(7,10,16,.85),rgba(7,10,16,.2));backdrop-filter:blur(14px)}.brand{font:500 24px var(--serif);letter-spacing:-.08em}.brand i{color:var(--ice);font-style:normal}.hud-center{display:flex;align-items:center;gap:14px;color:#dde4ed;font:8px var(--mono);letter-spacing:.12em}.counter{white-space:nowrap}.progress{position:relative;width:clamp(55px,9vw,130px);height:1px;background:#ffffff35}.progress i{position:absolute;inset:0 auto 0 0;width:0;background:var(--ice);box-shadow:0 0 12px var(--ice)}.hud-actions{justify-self:end;display:flex;align-items:center;gap:9px}.hud-link,.jump{display:inline-flex;align-items:center;gap:9px;padding:10px 12px;border:1px solid #d5e5ef40;background:#0b111a78;color:#eef2f6;font:7px var(--mono);letter-spacing:.09em;backdrop-filter:blur(9px);cursor:pointer;transition:.2s}.hud-link:hover,.jump:hover{border-color:var(--ice);background:#9de9ee13}.jump{color:#c5f6f7}
+    .intro{position:absolute;z-index:3;left:clamp(18px,6vw,95px);top:50%;transform:translateY(-46%);width:min(350px,32vw);pointer-events:none;text-shadow:0 3px 24px #03060c;transition:opacity .3s}.eyebrow{color:#b8eef0;font:8px var(--mono);letter-spacing:.2em;text-transform:uppercase}.intro h1{margin:18px 0 14px;font:400 clamp(51px,7vw,96px)/.84 var(--serif);letter-spacing:-.075em}.intro h1 em{color:var(--ice);font-weight:400}.intro p{max-width:330px;color:#d0d6e0;font:9px/1.85 var(--mono);letter-spacing:.03em}.scroll-label{position:absolute;z-index:4;left:clamp(18px,4vw,60px);bottom:6.5vh;color:#dbe4ed;font:7px/1.9 var(--mono);letter-spacing:.12em}.scroll-label b{color:var(--ice);font-weight:400}.scroll-cue{position:absolute;z-index:4;bottom:17px;left:50%;transform:translateX(-50%);text-align:center;color:#d8e1e9;font:7px var(--mono);letter-spacing:.15em;pointer-events:none}.scroll-cue i{display:block;width:1px;height:28px;margin:8px auto 0;background:linear-gradient(var(--ice),transparent);animation:fall 1.3s ease-in-out infinite alternate}.exhibit-card{position:absolute;z-index:4;right:clamp(18px,7vw,110px);top:50%;transform:translateY(-40%);width:min(320px,32vw);padding:20px 22px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(18px);box-shadow:0 22px 80px #0005;opacity:0;transition:opacity .3s,transform .35s;pointer-events:none}.exhibit-card.visible{opacity:1;transform:translateY(-50%)}.exhibit-card .index{color:var(--ice);font:8px var(--mono);letter-spacing:.14em}.exhibit-card h2{margin:11px 0 8px;font:400 clamp(25px,3vw,38px)/1.05 var(--serif)}.exhibit-card p{margin:0;color:#cbd2dd;font-size:12px;line-height:1.65}.exhibit-card .meta{margin-top:13px;color:#a6dce0;font:7px var(--mono);letter-spacing:.12em}.depth-mark{position:absolute;z-index:4;right:clamp(18px,4vw,60px);bottom:6.5vh;color:#d0d9e3;text-align:right;font:7px/1.9 var(--mono);letter-spacing:.12em}.depth-mark strong{display:block;color:#a9eef0;font-weight:400}
+    .modal{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:12px;background:rgba(3,5,9,.9);backdrop-filter:blur(16px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}.modal.open{opacity:1;visibility:visible}.modal-card{position:relative;display:flex;flex-direction:column;width:min(1200px,98vw);height:min(96svh,1000px);padding:10px;border:1px solid #a9e4ea66;background:#0c1119;box-shadow:0 32px 100px #000b}.modal-card #modalBody{display:grid;place-items:center;min-height:0;flex:1}.modal-media{display:block;width:100%;height:100%;min-height:0;object-fit:contain;object-position:center;background:#05070c}.modal-caption{display:flex;justify-content:space-between;gap:12px;padding:11px 3px 2px;color:#dce5ec;font:8px var(--mono);letter-spacing:.08em}.modal-close{position:absolute;right:10px;top:10px;z-index:2;width:38px;height:38px;border:1px solid #ffffff60;background:#090e16cc;cursor:pointer;font-size:20px}.error{position:absolute;z-index:8;left:16px;right:16px;bottom:16px;padding:11px;border:1px solid #e5848c;background:#291016;color:#ffe0e4;font:10px var(--mono)}.page-transition{position:fixed;inset:0;z-index:40;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,#1d2a37,#080b12 72%);transform:translateY(101%);transition:transform .48s cubic-bezier(.75,0,.2,1)}.page-transition.active{transform:translateY(0)}
+    @keyframes fall{to{transform:scaleY(.4);opacity:.45}}@media(max-width:700px){.stage{min-height:500px}.hud{min-height:62px;padding:0 12px;grid-template-columns:auto 1fr auto}.brand{font-size:21px}.hud-center{justify-self:center;gap:7px;font-size:6px;letter-spacing:.04em}.progress{width:38px}.hud-actions{gap:4px}.hud-link,.jump{padding:8px 7px;font-size:5px;letter-spacing:.025em}.intro{left:0;top:104px;transform:none;width:100%;padding:0 18px;text-align:center}.eyebrow{font-size:6px}.intro h1{font-size:clamp(53px,14vw,79px);margin:13px 0 9px}.intro p{max-width:275px;margin:0 auto;font-size:7px;line-height:1.7}.exhibit-card{left:14px;right:14px;top:auto;bottom:100px;transform:translateY(9px);width:auto;padding:13px 15px}.exhibit-card.visible{transform:translateY(0)}.exhibit-card h2{font-size:24px;margin:7px 0 5px}.exhibit-card p{font-size:10px}.exhibit-card .index,.exhibit-card .meta{font-size:6px}.scroll-label{left:12px;bottom:55px;max-width:125px;font-size:5px}.depth-mark{right:12px;bottom:55px;font-size:5px}.scroll-cue{bottom:12px;font-size:6px}.modal{padding:6px}.modal-card{width:100%;height:98svh;padding:7px}.modal-caption{font-size:7px;padding:8px 3px 2px}}
+    @media(max-width:380px){.hud{padding:0 8px}.hud-center{gap:5px}.progress{width:28px}.hud-link,.jump{padding:7px 5px;font-size:4.5px}.exhibit-card{left:10px;right:10px;bottom:101px}.depth-mark{max-width:90px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+  <style>
+    .hud{transition:transform .32s ease,opacity .32s ease}
+    body.in-room .hud{transform:translateY(-110%);opacity:0;pointer-events:none}
+    /* Keep the atrium's structural hoops behind the exhibit sightline. */
+    .exhibit-card{right:clamp(18px,4vw,58px);top:auto;bottom:clamp(24px,5vh,54px);width:min(290px,28vw);padding:16px 18px}
+    .exhibit-card.visible{transform:none}
+    @media(max-width:700px){.exhibit-card{left:14px;right:14px;bottom:96px;width:auto;padding:12px 14px}.exhibit-card.visible{transform:translateY(0)}}
+  </style>
+  <style>.brand{font-size:21px!important;letter-spacing:-.055em!important;white-space:nowrap}.intro{transition:opacity .18s ease!important}</style>
+  <style>
+    html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  </style>
+  <style>@media(max-width:700px){.hud-center{font-size:7px;gap:6px}.hud-link,.jump{font-size:6px}.intro p{font-size:8px}.eyebrow,.scroll-label,.depth-mark,.scroll-cue{font-size:6px}.exhibit-card .index,.exhibit-card .meta{font-size:7px}}@media(max-width:380px){.hud-center>span:last-child{display:none}.hud-link,.jump{font-size:5.5px;padding:7px 4px}}</style>
+</head>
+<body>
+  <!-- Saree room only: saree portraits and matching fashion clips from Vidhi's archive. -->
+  <script>
+    window.ROOM2_MEDIA=[
+      {type:'image',src:'/gallery/003-03a951e211d2d1f9a2125b8db734a136.webp',title:'Black Sequin Saree',brand:'the creator',category:'SAREE · EVENING EDITORIAL',story:'A detailed black sequin saree look from Vidhi’s fashion portfolio.'},
+      {type:'image',src:'/gallery/115-file_0000000049988211869bfc374b8aa397.webp',title:'Blue Embroidered Saree',brand:'the creator',category:'SAREE · TRADITIONAL STYLE',story:'A blue embroidered saree styled for an elegant portrait in natural light.'},
+      {type:'image',src:'/gallery/007-1727976493835.webp',title:'Red and Gold',brand:'the creator',category:'SAREE · TRADITIONAL STYLE',story:'A classic red saree portrait with warm, traditional details.'},
+      {type:'image',src:'/gallery/013-1791484044601.webp',title:'Colorful Drapes',brand:'the creator',category:'SAREE · PORTRAIT SESSION',story:'A richly colored saree styled for a poised portrait.'},
+      {type:'image',src:'/gallery/015-1791569836030.webp',title:'Blue from Every Angle',brand:'the creator',category:'SAREE · EDITORIAL',story:'A blue saree look captured from the back and side.'},
+      {type:'image',src:'/gallery/075-FB_IMG_1788886252418.webp',title:'A Bright Occasion',brand:'the creator',category:'SAREE · OCCASION WEAR',story:'A vivid pink saree look with a celebratory feel.'},
+      {type:'image',src:'/gallery/100-file_000000001c448211ab13f70defc41ec4.webp',title:'Black and Gold',brand:'the creator',category:'SAREE · EVENING LOOK',story:'A black and gold saree styled for a dramatic evening portrait.'},
+      {type:'image',src:'/gallery/104-file_000000002090824397bba3c31a0da29f.webp',title:'Traditional Red',brand:'the creator',category:'SAREE · CLASSIC LOOK',story:'Traditional draping and color from Vidhi’s personal portfolio.'},
+    ];
+  </script>
+
+  <main id="track" class="track"><section class="stage" aria-label="Room 2 vertical 3D orbit atrium">
+    <canvas id="atrium" aria-label="Scroll to descend through the portrait atrium"></canvas>
+    <header class="hud"><a class="brand" href="index.html">Vidhuuu</a><div class="hud-center"><span class="counter"><b id="count">01</b> / <span id="total">008</span></span><span class="progress"><i id="bar"></i></span><span id="roomLabel">SAREE ROOM · ORBIT ATRIUM</span></div><div class="hud-actions"><a class="hud-link" href="index.html">← ALL ROOMS</a><button class="jump" id="jump" type="button">NEXT LOOK ↓</button></div></header>
+    <div class="intro" id="intro"><span class="eyebrow">ROOM 02 · SAREE COLLECTION</span><h1>The Saree<br/><em>Room.</em></h1><p>Traditional drapes, editorial portraits and fashion films from the creator’s saree portfolio.</p></div>
+    <div class="scroll-label"><b>SCROLL TO EXPLORE</b><br/>A SAREE PORTRAIT ARCHIVE</div><div class="depth-mark"><strong id="depth">LOOK 01</strong>GUJARAT · INDIA</div><div class="scroll-cue">SCROLL TO THE NEXT LOOK<i/></div>
+    <article id="detail" class="exhibit-card" aria-live="polite"><span class="index" id="detailIndex">LOOK 01 / 008</span><h2 id="detailTitle">Black Sequin Saree</h2><p id="detailStory">A detailed black sequin saree look from Vidhi’s fashion portfolio.</p><div class="meta" id="detailMeta">the creator · SAREE EDITORIAL</div></article>
+  </section></main>
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Expanded exhibit"><div class="modal-card"><button class="modal-close" id="closeModal" type="button" aria-label="Close">×</button><div id="modalBody"></div><div class="modal-caption"><span id="modalTitle"></span><span id="modalCategory"></span></div></div></div>
+  <div id="pageTransition" class="page-transition" aria-hidden="true"></div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    gsap.registerPlugin(ScrollTrigger);
+
+    const items=window.ROOM2_MEDIA;const $=(id)=>document.getElementById(id);
+    document.querySelectorAll('a[href]').forEach((link)=>link.addEventListener('click',(event)=>{const target=new URL(link.href,location.href);if(target.origin!==location.origin||target.pathname===location.pathname||target.hash)return;event.preventDefault();$('pageTransition').classList.add('active');setTimeout(()=>location.assign(target.href),480);}));
+    $('total').textContent=String(items.length).padStart(3,'0');$('track').style.setProperty('--item-count',items.length);
+    const canvas=$('atrium');
+    const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
+    renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.65));renderer.setSize(innerWidth,innerHeight,false);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;
+    const scene=new THREE.Scene();scene.background=new THREE.Color('#080b12');scene.fog=new THREE.FogExp2('#0e1722',.013);
+    const camera=new THREE.PerspectiveCamera(innerWidth<700?66:50,innerWidth/innerHeight,.1,180);camera.position.set(0,3,8);
+    const lookTarget=new THREE.Vector3(0,1,0);
+    const themes=[
+      {bg:'#0d1420',accent:'#7be1eb',key:'#c0f2ef',floor:'#18242d',wall:'#18212c'},
+      {bg:'#111126',accent:'#a18cff',key:'#d9ccff',floor:'#201d33',wall:'#201b31'},
+      {bg:'#17111e',accent:'#ed83c0',key:'#ffd0e7',floor:'#2a1827',wall:'#271a2a'},
+      {bg:'#101b1a',accent:'#99d29a',key:'#d8f1ca',floor:'#1c2922',wall:'#1a2824'},
+    ];
+    const world={x:0,y:3,z:8,tx:0,ty:1,tz:0};
+    const targetBg=new THREE.Color(themes[0].bg),targetAccent=new THREE.Color(themes[0].accent),targetKey=new THREE.Color(themes[0].key),targetFloor=new THREE.Color(themes[0].floor),targetWall=new THREE.Color(themes[0].wall);
+    const hemi=new THREE.HemisphereLight('#c8dff0','#0d1019',1.0);scene.add(hemi);
+    const ambient=new THREE.AmbientLight('#b8c4d9',.4);scene.add(ambient);
+    const keyLight=new THREE.PointLight(themes[0].key,28,32,1.4);keyLight.position.set(0,5,0);scene.add(keyLight);
+    const rimLight=new THREE.PointLight(themes[0].accent,32,40,1.4);rimLight.position.set(-7,0,-12);scene.add(rimLight);
+
+    const mats={
+      wall:new THREE.MeshStandardMaterial({color:themes[0].wall,metalness:.72,roughness:.36,side:THREE.BackSide}),
+      floor:new THREE.MeshStandardMaterial({color:themes[0].floor,metalness:.84,roughness:.2}),
+      ring:new THREE.MeshStandardMaterial({color:'#647788',metalness:.9,roughness:.23}),
+      frame:new THREE.MeshStandardMaterial({color:'#17212c',metalness:.78,roughness:.28}),
+      fallback:new THREE.MeshStandardMaterial({color:'#3b465a',emissive:'#182532',emissiveIntensity:.8,roughness:.52}),
+      dark:new THREE.MeshStandardMaterial({color:'#0b1018',metalness:.72,roughness:.28}),
+    };
+    const box=(w,h,d,mat,parent,x=0,y=0,z=0)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);parent.add(m);return m;};
+    const atriumHeight=items.length*8+18;const radius=13.5;
+    const shaft=new THREE.Mesh(new THREE.CylinderGeometry(radius,radius,atriumHeight,96,1,true),mats.wall);shaft.position.y=-(atriumHeight/2)+2;scene.add(shaft);
+    // Brushed-metal structural hoops and neon rings encircle each descending gallery level.
+    for(let i=0;i<=items.length;i++){
+      // Gallery deck sits below the artwork; keeping it out of the frame's sightline avoids a floor band across portraits.
+      const y=-1.2-i*8;
+      const hoop=new THREE.Mesh(new THREE.TorusGeometry(12.25,.14,12,128),mats.ring);hoop.rotation.x=Math.PI/2;hoop.position.y=y;scene.add(hoop);
+      const neon=new THREE.Mesh(new THREE.TorusGeometry(12.62,.035,8,128),new THREE.MeshBasicMaterial({color:themes[i%themes.length].accent}));neon.rotation.x=Math.PI/2;neon.position.y=y-.15;scene.add(neon);
+      const grid=new THREE.GridHelper(26,28,0x6dbac7,0x34505e);grid.position.y=y-.18;grid.material.transparent=true;grid.material.opacity=.21;scene.add(grid);
+      const floorDisc=new THREE.Mesh(new THREE.CircleGeometry(11.3,96),mats.floor);floorDisc.rotation.x=-Math.PI/2;floorDisc.position.y=y-.22;scene.add(floorDisc);
+      for(let b=0;b<8;b++){
+        const a=b*Math.PI/4+i*.12;const rib=box(.12,7.7,.12,mats.ring,scene,Math.sin(a)*12.8,y-3.9,Math.cos(a)*12.8);
+      }
+    }
+
+    // Embers and suspended dust share one light point buffer.
+    const emberCount=620;const emberData=new Float32Array(emberCount*3);const emberColors=new Float32Array(emberCount*3);
+    for(let i=0;i<emberCount;i++){emberData[i*3]=(Math.random()-.5)*22;emberData[i*3+1]=1-Math.random()*(items.length*8+10);emberData[i*3+2]=(Math.random()-.5)*22;const c=new THREE.Color(themes[i%themes.length].accent);emberColors.set([c.r,c.g,c.b],i*3);}
+    const emberGeo=new THREE.BufferGeometry();emberGeo.setAttribute('position',new THREE.BufferAttribute(emberData,3));emberGeo.setAttribute('color',new THREE.BufferAttribute(emberColors,3));
+    const embers=new THREE.Points(emberGeo,new THREE.PointsMaterial({size:.055,vertexColors:true,transparent:true,opacity:.72,depthWrite:false,blending:THREE.AdditiveBlending,sizeAttenuation:true}));scene.add(embers);
+
+    const exhibits=[];const frameGeo=new THREE.PlaneGeometry(4.25,5.05);const screenGeo=new THREE.PlaneGeometry(3.88,4.68);
+    function makeBlade(parent,x,y,rotation){
+      const pivot=new THREE.Group();pivot.position.set(0,0,.16);parent.add(pivot);
+      const panel=box(1.72,2.08,.08,new THREE.MeshPhysicalMaterial({color:'#7692a2',metalness:.7,roughness:.16,transparent:true,opacity:.91,transmission:.12,thickness:.08,clearcoat:.9,clearcoatRoughness:.15}),pivot,x,y,0);
+      const stripe=box(.035,1.98,.025,new THREE.MeshBasicMaterial({color:'#b7eff0'}),pivot,x,y,.052);
+      pivot.rotation.z=rotation;return pivot;
+    }
+    for(let i=0;i<items.length;i++){
+      const theta=i*Math.PI*2/items.length+.35;const y=1.8-i*8;const x=Math.sin(theta)*10.65;const z=Math.cos(theta)*10.65;
+      const frame=new THREE.Group();frame.position.set(x,y,z);frame.rotation.y=theta+Math.PI;scene.add(frame);
+      box(4.5,5.28,.24,mats.dark,frame,0,0,-.17);
+      const material=mats.fallback.clone();const screen=new THREE.Mesh(screenGeo,material);screen.position.z=-.025;frame.add(screen);
+      const accent=themes[Math.floor(i/2)%themes.length].accent;const neonMat=new THREE.MeshBasicMaterial({color:accent});
+      box(4.52,.055,.06,neonMat,frame,0,2.68,.01);box(4.52,.055,.06,neonMat,frame,0,-2.68,.01);box(.055,5.32,.06,neonMat,frame,-2.25,0,.01);box(.055,5.32,.06,neonMat,frame,2.25,0,.01);
+      const spot=new THREE.SpotLight(accent,42,18,.52,.68,1.3);spot.position.set(x*.48,y+2.8,z*.48);spot.target.position.set(x,y,z);scene.add(spot,spot.target);
+      const frameLight=new THREE.PointLight(accent,6,8,1.8);frameLight.position.set(x*.84,y,z*.84);scene.add(frameLight);
+      // Four glass blades meet in the center, then retract like a mechanical camera iris.
+      const blades=[makeBlade(frame,-.84,1.02,0),makeBlade(frame,.84,1.02,0),makeBlade(frame,-.84,-1.02,0),makeBlade(frame,.84,-1.02,0)];
+      const floorGlow=new THREE.Mesh(new THREE.CircleGeometry(2.3,48),new THREE.MeshBasicMaterial({color:accent,transparent:true,opacity:.07,depthWrite:false}));floorGlow.rotation.x=-Math.PI/2;floorGlow.position.set(x*.72,y-2.25,z*.72);scene.add(floorGlow);
+      exhibits.push({theta,y,x,z,frame,screen,material,blades,spot,frameLight,accent});
+    }
+
+    // Three-item GPU window: active exhibit and one neighbor on each side.
+    const loader=new THREE.TextureLoader();const cache=new Map();const videos=new Map();let active=-1;
+    function fit(index,w,h){const exhibit=exhibits[index];if(!exhibit||!w||!h)return;const frameAspect=3.88/4.68,imageAspect=w/h;if(imageAspect>frameAspect)exhibit.screen.scale.set(1,frameAspect/imageAspect,1);else exhibit.screen.scale.set(imageAspect/frameAspect,1,1);}
+    function dispose(index){const entry=cache.get(index);if(!entry)return;entry.texture?.dispose();if(entry.video){entry.video.pause();entry.video.removeAttribute('src');entry.video.load();entry.video.remove();videos.delete(index);}cache.delete(index);}
+    function applyTexture(index,texture){const ex=exhibits[index];if(!ex)return;texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());ex.material.map=texture;ex.material.color.set('#fff');ex.material.needsUpdate=true;const im=texture.image;fit(index,im?.videoWidth||im?.naturalWidth||im?.width,im?.videoHeight||im?.naturalHeight||im?.height);}
+    function load(index){if(index<0||index>=items.length||cache.has(index))return;const item=items[index];
+      if(item.type==='video'){const v=document.createElement('video');v.crossOrigin='anonymous';v.muted=true;v.loop=true;v.playsInline=true;v.preload='metadata';v.src=item.src;v.style.display='none';document.body.appendChild(v);videos.set(index,v);const texture=new THREE.VideoTexture(v);texture.colorSpace=THREE.SRGBColorSpace;cache.set(index,{texture,video:v});applyTexture(index,texture);v.addEventListener('loadedmetadata',()=>fit(index,v.videoWidth,v.videoHeight),{once:true});}
+      else{cache.set(index,{loading:true});loader.load(item.src,(texture)=>{const entry=cache.get(index);if(!entry){texture.dispose();return;}entry.texture=texture;entry.loading=false;applyTexture(index,texture);},undefined,()=>{const entry=cache.get(index);if(entry)entry.loading=false;});}
+    }
+    function activate(index){index=Math.max(0,Math.min(items.length-1,index));if(index===active)return;active=index;for(let i=0;i<items.length;i++)if(i<index-1||i>index+1)dispose(i);for(let i=Math.max(0,index-1);i<=Math.min(items.length-1,index+1);i++)load(i);videos.forEach((video,i)=>{if(i===index)video.play().catch(()=>{});else video.pause();});exhibits.forEach((e,i)=>{if(i!==index&&e.material.map){e.material.map=null;e.material.needsUpdate=true;}});const entry=cache.get(index);if(entry?.texture)applyTexture(index,entry.texture);
+      const item=items[index];$('count').textContent=String(index+1).padStart(2,'0');$('depth').textContent=`LEVEL ${String(index+1).padStart(2,'0')} · ${Math.round(index*8)}M DOWN`;$('detailIndex').textContent=`EXHIBIT ${String(index+1).padStart(2,'0')} / ${String(items.length).padStart(3,'0')}`;$('detailTitle').textContent=item.title;$('detailStory').textContent=item.story;$('detailMeta').textContent=`${item.brand} · ${item.category}`;
+    }
+
+    const cameraWorld={x:0,y:3,z:8,tx:0,ty:1,tz:0};const timeline=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#track',start:'top top',end:'bottom bottom',scrub:1.35,invalidateOnRefresh:true,onUpdate(self){const index=Math.min(items.length-1,Math.floor(self.progress*items.length));activate(index);document.body.classList.toggle('in-room',self.progress>.015&&self.progress<.985);const phase=(self.progress*items.length)%1;$('bar').style.width=`${self.progress*100}%`;$('detail').classList.toggle('visible',phase>.22&&phase<.79);$('intro').style.opacity=self.progress>0?'0':'1';const theme=themes[Math.floor(index/2)%themes.length];targetBg.set(theme.bg);targetAccent.set(theme.accent);targetKey.set(theme.key);targetFloor.set(theme.floor);targetWall.set(theme.wall);}}});
+    const section=4.6;
+    items.forEach((_,i)=>{
+      const ex=exhibits[i];const start=i*section;const next=exhibits[(i+1)%exhibits.length];
+      const approachAngle=ex.theta-.32;const revealAngle=ex.theta-.06;
+      const approachRadius=7.2;const revealRadius=5.45;
+      timeline.to(cameraWorld,{x:Math.sin(approachAngle)*approachRadius,y:ex.y+2.25,z:Math.cos(approachAngle)*approachRadius,tx:ex.x,ty:ex.y,tz:ex.z,duration:.72,ease:'power1.inOut'},start);
+      timeline.to(cameraWorld,{x:Math.sin(revealAngle)*revealRadius,y:ex.y+1.0,z:Math.cos(revealAngle)*revealRadius,tx:ex.x,ty:ex.y,tz:ex.z,duration:.68,ease:'power2.inOut'},start+.72);
+      // Four-blade iris retracts after camera alignment and closes before descent.
+      ex.blades.forEach((blade,j)=>{const sx=blade.children[0].position.x<0?-1:1;const sy=blade.children[0].position.y<0?-1:1;timeline.to(blade.position,{x:sx*2.15,y:sy*2.42,duration:.62,ease:'power2.inOut'},start+1.22);timeline.to(blade.rotation,{z:sx*sy*.24,duration:.62,ease:'power2.inOut'},start+1.22);});
+      timeline.to(cameraWorld,{x:Math.sin(revealAngle)*revealRadius,y:ex.y+.9,z:Math.cos(revealAngle)*revealRadius,tx:ex.x,ty:ex.y,tz:ex.z,duration:1.03},start+1.4);
+      timeline.to(cameraWorld,{x:Math.sin(ex.theta+.12)*7.4,y:ex.y+2.8,z:Math.cos(ex.theta+.12)*7.4,tx:0,ty:ex.y,tz:0,duration:.55,ease:'power2.inOut'},start+2.72);
+      ex.blades.forEach((blade,j)=>{const sx=blade.children[0].position.x<0?-1:1;const sy=blade.children[0].position.y<0?-1:1;timeline.to(blade.position,{x:0,y:0,duration:.48,ease:'power2.inOut'},start+2.9);timeline.to(blade.rotation,{z:0,duration:.48,ease:'power2.inOut'},start+2.9);});
+      if(i<items.length-1)timeline.to(cameraWorld,{x:Math.sin(next.theta-.48)*7.8,y:next.y+2.4,z:Math.cos(next.theta-.48)*7.8,tx:0,ty:next.y,tz:0,duration:1.0,ease:'power1.inOut'},start+3.35);
+    });
+    timeline.to({}, {duration:.01},items.length*section);
+
+    function inspect(index){const item=items[index];videos.forEach(video=>video.pause());const host=$('modalBody');host.replaceChildren();let el;if(item.type==='video'){el=document.createElement('video');el.src=item.src;el.controls=true;el.autoplay=true;el.muted=false;el.playsInline=true;el.loop=true;}else{el=document.createElement('img');el.src=item.src;el.alt=item.title;}el.className='modal-media';host.appendChild(el);$('modalTitle').textContent=item.title;$('modalCategory').textContent=item.category;$('modal').classList.add('open');}
+    function closeModal(){const v=$('modalBody').querySelector('video');if(v){v.pause();v.removeAttribute('src');v.load();}$('modalBody').replaceChildren();$('modal').classList.remove('open');if(items[active]?.type==='video')videos.get(active)?.play().catch(()=>{});}
+    $('closeModal').addEventListener('click',closeModal);$('modal').addEventListener('click',(e)=>{if(e.target===$('modal'))closeModal();});window.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeModal();});
+    const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();canvas.addEventListener('pointerup',(e)=>{const rect=canvas.getBoundingClientRect();pointer.x=((e.clientX-rect.left)/rect.width)*2-1;pointer.y=-((e.clientY-rect.top)/rect.height)*2+1;raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(exhibits.map(x=>x.screen),false);if(hits.length)inspect(exhibits.findIndex(x=>x.screen===hits[0].object));});
+    $('jump').addEventListener('click',()=>{const index=(active+1)%items.length;const trigger=ScrollTrigger.getAll().find(t=>t.trigger===$('track'));if(trigger){const p=index/items.length;window.scrollTo({top:trigger.start+(trigger.end-trigger.start)*p,behavior:'smooth'});}});
+
+    function resize(){const w=innerWidth,h=innerHeight;renderer.setPixelRatio(Math.min(devicePixelRatio||1,w<700?1.2:1.65));renderer.setSize(w,h,false);camera.aspect=w/h;camera.fov=w<700?68:50;camera.updateProjectionMatrix();ScrollTrigger.refresh();}window.addEventListener('resize',resize,{passive:true});
+    const clock=new THREE.Clock();
+    renderer.setAnimationLoop(()=>{const dt=Math.min(clock.getDelta(),.05);camera.position.x=THREE.MathUtils.damp(camera.position.x,cameraWorld.x,4.8,dt);camera.position.y=THREE.MathUtils.damp(camera.position.y,cameraWorld.y,4.8,dt);camera.position.z=THREE.MathUtils.damp(camera.position.z,cameraWorld.z,4.8,dt);lookTarget.x=THREE.MathUtils.damp(lookTarget.x,cameraWorld.tx,4.8,dt);lookTarget.y=THREE.MathUtils.damp(lookTarget.y,cameraWorld.ty,4.8,dt);lookTarget.z=THREE.MathUtils.damp(lookTarget.z,cameraWorld.tz,4.8,dt);camera.lookAt(lookTarget);
+      scene.background.lerp(targetBg,Math.min(1,dt*.8));scene.fog.color.lerp(targetBg,Math.min(1,dt*.8));mats.wall.color.lerp(targetWall,Math.min(1,dt*.8));mats.floor.color.lerp(targetFloor,Math.min(1,dt*.8));keyLight.color.lerp(targetKey,Math.min(1,dt));rimLight.color.lerp(targetAccent,Math.min(1,dt));
+      const pos=emberGeo.attributes.position;for(let i=0;i<emberCount;i++){pos.array[i*3+1]+=.003+Math.sin(clock.elapsedTime+i)*.00025;if(pos.array[i*3+1]>3)pos.array[i*3+1]=-(items.length*8+10);}pos.needsUpdate=true;renderer.render(scene,camera);});
+    activate(0);$('count').textContent='01';
+    window.addEventListener('beforeunload',()=>{ScrollTrigger.getAll().forEach(t=>t.kill());cache.forEach((_,i)=>dispose(i));renderer.dispose();});
+  </script>
+</body>
+</html>

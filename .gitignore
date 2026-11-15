@@ -1,0 +1,16 @@
+node_modules/
+dist/
+work/
+.DS_Store
+npm-debug.log*
+
+# Private portfolio media and generated previews
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.avif
+*.gif
+*.mp4
+*.mov
+*.webm
