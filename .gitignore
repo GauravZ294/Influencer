@@ -1,16 +1,12 @@
 node_modules/
 dist/
 work/
+assets/
+/gallery-rest.jpg
+public/gallery/
+public/casual/
+public/model/
+public/showcase/
+public/videos/
 .DS_Store
 npm-debug.log*
-
-# Private portfolio media and generated previews
-*.jpg
-*.jpeg
-*.png
-*.webp
-*.avif
-*.gif
-*.mp4
-*.mov
-*.webm
