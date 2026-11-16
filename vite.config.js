@@ -10,7 +10,9 @@ function absoluteSocialPreview() {
       const host = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL || process.env.SITE_URL;
       if (!host) return html;
       const origin = `https://${host.replace(/^https?:\/\//, '').replace(/\/$/, '')}`;
-      return html.replaceAll('content="/social-preview.jpg"', `content="${origin}/social-preview.jpg"`);
+      return html
+        .replaceAll('content="/social-preview.jpg"', `content="${origin}/social-preview.jpg"`)
+        .replace('content="/"', `content="${origin}/"`);
     },
   };
 }
